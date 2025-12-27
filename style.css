@@ -15,47 +15,25 @@ body {
 /* ===== FULL-WIDTH LOGO BAR ===== */
 .logo-bar {
   width: 100%;
-  padding: 32px 0;
+  padding: 14px 0;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  /* Polished glass effect */
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.45),
-    rgba(0, 0, 0, 0.15)
-  );
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-
-  /* Subtle separation */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* LOGO IMAGE ITSELF */
-.logo-bar{
-  width:100%;
-  padding:18px 0;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
-.logo-bar img{
-  height:90px;        /* <- controls how tall the logo is */
-  width:auto;         /* keeps logo proportions */
-  max-width: 90vw;    /* prevents overflow on small screens */
+.logo-bar img {
+  height: 56px;      /* 🔹 tiny logo size */
+  width: auto;       /* 🔹 keeps proportions */
   object-fit: contain;
 
-  border-radius: 12px;
-  filter: drop-shadow(0 10px 25px rgba(0,0,0,0.65));
+  border-radius: 10px;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.6));
 
 /* ===== PAGE CONTENT WRAPPER ===== */
 .page {
