@@ -37,7 +37,7 @@ body {
 
 /* ===== PAGE CONTENT WRAPPER ===== */
 .page {
-  max-width: 1400px;
+  max-width: 50%;
   margin: 0 auto;
   padding: 60px 24px;
 }
@@ -96,7 +96,7 @@ body {
 }
 
 .tiles {
-  max-width: 1000px;
+  max-width: 100px;
   margin: 0 auto;
 
   display: grid;
