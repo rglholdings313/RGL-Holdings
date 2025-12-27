@@ -34,22 +34,28 @@ body {
 }
 
 /* LOGO IMAGE ITSELF */
-.logo-bar img {
-  width: 100%;
-  max-width: 1400px;   /* controls horizontal span */
-  height: auto;
+.logo-bar{
+  width:100%;
+  padding:18px 0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background: rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.logo-bar img{
+  height:90px;        /* <- controls how tall the logo is */
+  width:auto;         /* keeps logo proportions */
+  max-width: 90vw;    /* prevents overflow on small screens */
   object-fit: contain;
 
-  /* Luxury polish */
-  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.6));
-  transition: transform 0.4s ease, opacity 0.4s ease;
-}
-
-/* Optional hover effect */
-.logo-bar img:hover {
-  transform: scale(1.01);
-  opacity: 0.95;
-}
+  border-radius: 12px;
+  filter: drop-shadow(0 10px 25px rgba(0,0,0,0.65));
 
 /* ===== PAGE CONTENT WRAPPER ===== */
 .page {
