@@ -1,15 +1,76 @@
+<style>
+  .password-gate {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  .password-box {
+    text-align: center;
+    max-width: 320px;
+    width: 100%;
+  }
+
+  .password-box h2 {
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .password-box input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    margin-bottom: 12px;
+  }
+
+  .password-box button {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: white;
+    color: black;
+  }
+
+  .error {
+    color: #ff6b6b;
+    margin-top: 10px;
+    display: none;
+  }
+</style>
+
+<div class="password-gate" id="passwordGate">
+  <div class="password-box">
+    <h2>Private Access</h2>
+    <input type="password" id="passwordInput" placeholder="Enter password" />
+    <button onclick="checkPassword()">Enter</button>
+    <div class="error" id="errorMsg">Incorrect password</div>
+  </div>
+</div>
+
 <script>
-  (function () {
-    const password = "rgl2025"; // CHANGE THIS
-    const userInput = prompt("This site is private. Enter password:");
+  const PASSWORD = "rgl2025"; // change if you want
 
-    if (userInput !== password) {
-      document.documentElement.innerHTML = "";
-      alert("Access denied.");
+  function checkPassword() {
+    const input = document.getElementById("passwordInput").value;
+    if (input === PASSWORD) {
+      document.getElementById("passwordGate").remove();
+    } else {
+      document.getElementById("errorMsg").style.display = "block";
     }
-  })();
+  }
 </script>
-
 
 <!DOCTYPE html>
 <html lang="en">
