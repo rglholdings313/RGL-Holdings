@@ -62,15 +62,24 @@
 <script>
   const PASSWORD = "rgl2025"; // change if you want
 
+  const inputEl = document.getElementById("passwordInput");
+
   function checkPassword() {
-    const input = document.getElementById("passwordInput").value;
-    if (input === PASSWORD) {
+    if (inputEl.value === PASSWORD) {
       document.getElementById("passwordGate").remove();
     } else {
       document.getElementById("errorMsg").style.display = "block";
     }
   }
+
+  // Allow Enter key
+  inputEl.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      checkPassword();
+    }
+  });
 </script>
+
 
 <!DOCTYPE html>
 <html lang="en">
