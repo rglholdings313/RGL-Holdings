@@ -1,50 +1,3 @@
-/* ===== GLOBAL RESET (safe to keep) ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* ===== BODY ===== */
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #0e0e0e;
-  color: #ffffff;
-}
-
-/* ===== FULL-WIDTH LOGO BAR ===== */
-.logo-bar {
-  width: 100%;
-  padding: 14px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-.logo-bar img {
-  height: 56px;      /* 🔹 tiny logo size */
-  width: auto;       /* 🔹 keeps proportions */
-  object-fit: contain;
-
-  border-radius: 10px;
-  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.6));
-
-/* ===== PAGE CONTENT WRAPPER ===== */
-.page {
-  max-width: 50%;
-  margin: 0 auto;
-  padding: 60px 24px;
-}
-
-
-
-
 * {
   margin: 0;
   padding: 0;
@@ -96,7 +49,7 @@ body {
 }
 
 .tiles {
-  max-width: 100px;
+  max-width: 1000px;
   margin: 0 auto;
 
   display: grid;
