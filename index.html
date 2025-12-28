@@ -10,7 +10,6 @@
 <body>
 
   <!-- Password Gate -->
-<!-- Password Gate -->
 <div class="password-gate" id="passwordGate">
   <div class="password-box">
 
@@ -89,14 +88,18 @@
     const inputEl = document.getElementById("passwordInput");
     const btn = document.getElementById("passwordBtn");
 
-    function checkPassword() {
-      if (inputEl.value === PASSWORD) {
-        gate.style.display = "none";
-      } else {
-        inputEl.value = "";
-        inputEl.focus();
-      }
-    }
+function checkPassword() {
+  if (inputEl.value === PASSWORD) {
+    gate.classList.add("is-unlocking");
+
+    setTimeout(() => {
+      gate.remove();
+    }, 280); // must match CSS transition time
+  } else {
+    inputEl.value = "";
+    inputEl.focus();
+  }
+}
 
     btn.addEventListener("click", checkPassword);
     inputEl.addEventListener("keydown", (e) => {
