@@ -1,6 +1,6 @@
 /* =========================
    RGL HOLDINGS - STYLE.CSS
-   Matches current index.html
+   Clean + locked tiles
    ========================= */
 
 /* Reset */
@@ -21,31 +21,34 @@ body {
 }
 
 /* Dark overlay so content pops */
-body::before {
-  content: "";
+body::before{
+  content:"";
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.62);
+  background: rgba(0,0,0,0.62);
   z-index: 0;
 }
 
-/* Keep everything above overlay */
+/* Keep content above overlay */
 .hero,
-.tiles {
+.tiles,
+.sector-wrap,
+.page {
   position: relative;
   z-index: 1;
 }
 
-/* Header area */
-.hero {
+/* =========================
+   HERO (header)
+   ========================= */
+.hero{
   width: min(1100px, 92%);
   margin: 0 auto;
   padding: 28px 0 14px;
   text-align: center;
 }
 
-/* Small centered logo */
-.logo-bar img {
+.logo-bar img{
   width: 54px;
   height: 54px;
   object-fit: contain;
@@ -56,8 +59,7 @@ body::before {
   box-shadow: 0 10px 30px rgba(0,0,0,0.45);
 }
 
-/* Title + subtitle */
-.title {
+.title{
   font-size: clamp(30px, 3.2vw, 44px);
   font-weight: 800;
   letter-spacing: 0.3px;
@@ -65,7 +67,7 @@ body::before {
   text-shadow: 0 8px 26px rgba(0,0,0,0.7);
 }
 
-.subtitle {
+.subtitle{
   font-size: 14px;
   opacity: 0.9;
   max-width: 720px;
@@ -74,11 +76,32 @@ body::before {
   text-shadow: 0 6px 18px rgba(0,0,0,0.7);
 }
 
-/* Tile card (each tile is an <a>) */
-.tile {
+/* =========================
+   HOMEPAGE TILES GRID
+   ========================= */
+.tiles{
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  padding: 14px 0 60px;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+@media (max-width: 820px){
+  .tiles{ grid-template-columns: 1fr; }
+}
+
+/* =========================
+   TILE (clickable <a>)
+   Pixel-perfect boxed look
+   ========================= */
+.tile{
   text-decoration: none;
   color: inherit;
-  background: rgba(10, 10, 10, 0.55);
+
+  background: rgba(10,10,10,0.55);
   border: 1px solid rgba(255,255,255,0.10);
   border-radius: 18px;
   overflow: hidden;
@@ -90,14 +113,16 @@ body::before {
   transform: translateY(0);
   transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 
-  display: flex;
-  flex-direction: column;
+  /* LOCK THE TILE SHAPE */
+  aspect-ratio: 4 / 3;   /* boxy; change to 1/1 for square */
+  width: 100%;
 
-  /* KEY: makes it feel like a box, not a wide rectangle */
-  aspect-ratio: 4 / 3;   /* try 1 / 1 for perfect square tiles */
+  /* Layout inside */
+  display: grid;
+  grid-template-rows: 1fr auto;
 }
 
-.tile:hover {
+.tile:hover{
   transform: translateY(-4px);
   border-color: rgba(255,255,255,0.18);
   box-shadow:
@@ -105,32 +130,33 @@ body::before {
     0 0 0 1px rgba(255,255,255,0.05) inset;
 }
 
-/* Tile image */
-.tile > img {
+/* The image fills the top area WITHOUT stretching */
+.tile > img{
   width: 100%;
-  flex: 1;                 /* image fills remaining height */
-  object-fit: cover;       /* no stretching */
-  object-position: center; /* adjust if you want */
+  height: 100%;
+  object-fit: cover;              /* keeps uniform crop */
+  object-position: center 45%;    /* tweak per image if needed */
   display: block;
 }
 
-/* Text bar at bottom (shorter, cleaner) */
-.tile-text {
-  padding: 14px 18px 16px; /* shortened */
+/* Text bar at bottom */
+.tile-text{
+  padding: 16px 20px;             /* more breathing room so it doesn’t cut */
   background: rgba(0,0,0,0.38);
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 
-.tile-text h2 {
+.tile-text h2{
   font-size: 15px;
   font-weight: 800;
-  margin-bottom: 6px;
+  margin: 0 0 6px 0;
 }
 
-.tile-text p {
+.tile-text p{
   font-size: 12px;
   opacity: 0.9;
   line-height: 1.4;
+  margin: 0;
 
   /* keeps the bar from getting tall */
   display: -webkit-box;
@@ -140,13 +166,15 @@ body::before {
 }
 
 /* Keyboard focus */
-.tile:focus {
+.tile:focus{
   outline: 2px solid rgba(255,255,255,0.35);
   outline-offset: 3px;
 }
 
-/* Password gate stays on top of everything */
-.password-gate {
+/* =========================
+   PASSWORD GATE
+   ========================= */
+.password-gate{
   position: fixed;
   inset: 0;
   background: #000;
@@ -160,18 +188,16 @@ body::before {
 /* =========================
    SECTOR PAGES (gallery)
    ========================= */
-
-body.sector-page::before {
-  background: rgba(0,0,0,0);
+body.sector-page::before{
+  background: rgba(0,0,0,0); /* no tint on sector pages */
 }
 
 /* Wrapper */
-.sector-wrap{
+.sector-wrap,
+.page{
   width: min(1100px, 92%);
   margin: 0 auto;
   padding: 26px 0 60px;
-  position: relative;
-  z-index: 1;
 }
 
 /* Back link */
@@ -182,7 +208,7 @@ body.sector-page::before {
   text-decoration: none;
   font-size: 14px;
 }
-.back-link:hover { text-decoration: underline; }
+.back-link:hover{ text-decoration: underline; }
 
 /* Gallery grid */
 .gallery{
@@ -191,7 +217,6 @@ body.sector-page::before {
   gap: 14px;
 }
 
-/* Responsive */
 @media (max-width: 900px){
   .gallery{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -199,7 +224,22 @@ body.sector-page::before {
   .gallery{ grid-template-columns: 1fr; }
 }
 
-/* Card tiles */
+/* If your sector pages are just <img> tags (no .card wrappers),
+   this makes them behave nicely automatically */
+.gallery > img{
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+  background: rgba(10,10,10,0.45);
+}
+
+/* If you DO wrap them in <div class="card"><img/></div>, keep support */
 .gallery .card{
   background: rgba(10,10,10,0.45);
   border: 1px solid rgba(255,255,255,0.10);
@@ -208,7 +248,6 @@ body.sector-page::before {
   box-shadow: 0 12px 30px rgba(0,0,0,0.45);
 }
 
-/* Image sizing (this is the key) */
 .gallery .card img{
   width: 100%;
   height: 220px;
