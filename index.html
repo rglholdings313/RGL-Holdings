@@ -1,86 +1,3 @@
-<style>
-  .password-gate {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    color: white;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  }
-
-  .password-box {
-    text-align: center;
-    max-width: 320px;
-    width: 100%;
-  }
-
-  .password-box h2 {
-    margin-bottom: 12px;
-    font-weight: 500;
-  }
-
-  .password-box input {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 6px;
-    border: none;
-    outline: none;
-    margin-bottom: 12px;
-  }
-
-  .password-box button {
-    width: 100%;
-    padding: 12px;
-    font-size: 15px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    background: white;
-    color: black;
-  }
-
-  .error {
-    color: #ff6b6b;
-    margin-top: 10px;
-    display: none;
-  }
-</style>
-
-<div class="password-gate" id="passwordGate">
-  <div class="password-box">
-    <h2>Private Access</h2>
-    <input type="password" id="passwordInput" placeholder="Enter password" />
-    <button onclick="checkPassword()">Enter</button>
-    <div class="error" id="errorMsg">Incorrect password</div>
-  </div>
-</div>
-
-<script>
-  const PASSWORD = "rgl2025"; // change if you want
-
-  const inputEl = document.getElementById("passwordInput");
-
-  function checkPassword() {
-    if (inputEl.value === PASSWORD) {
-      document.getElementById("passwordGate").remove();
-    } else {
-      document.getElementById("errorMsg").style.display = "block";
-    }
-  }
-
-  // Allow Enter key
-  inputEl.addEventListener("keydown", function (e) {
-    if (e.key === "Enter") {
-      checkPassword();
-    }
-  });
-</script>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,46 +6,88 @@
   <title>RGL Holdings</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-  <div class="logo-bar">
-    <img src="assets/images/logo.jpg" alt="RGL Holdings">
+  <!-- Password Gate (kept INSIDE body) -->
+  <div class="password-gate" id="passwordGate">
+    <div class="password-box">
+      <h2>Private Access</h2>
+      <input type="password" id="passwordInput" placeholder="Enter password" />
+      <button id="passwordBtn" type="button">Enter</button>
+      <div class="error" id="errorMsg">Incorrect password</div>
+    </div>
   </div>
 
-  <div class="page">
-    <!-- tiles, sections, content -->
-  </div>
-    </header>
+  <!-- Header -->
+  <header class="hero">
+    <div class="logo-bar">
+      <img src="assets/images/logo.jpg" alt="RGL Holdings" />
+    </div>
 
-    <main class="tiles">
+    <h1 class="title">RGL Holdings</h1>
+    <p class="subtitle">
+      A holding company building ventures across technology, products, impact, and media.
+    </p>
+  </header>
 
-  <a class="tile" href="technology.html">
-    <img src="assets/images/sectors/technology.jpg" alt="Technology">
-    <h2>Technology</h2>
-    <p>Software, apps, and platforms built to scale.</p>
-  </a>
+  <!-- Tiles -->
+  <main class="tiles">
+    <a class="tile" href="technology.html">
+      <img src="assets/images/sectors/technology.jpg" alt="Technology">
+      <div class="tile-text">
+        <h2>Technology</h2>
+        <p>Software, apps, and platforms built to scale.</p>
+      </div>
+    </a>
 
-  <a class="tile" href="products.html">
-    <img src="assets/images/sectors/products.jpg" alt="Physical Products">
-    <h2>Physical Products</h2>
-    <p>Luxury and consumer product concepts.</p>
-  </a>
+    <a class="tile" href="products.html">
+      <img src="assets/images/sectors/products.jpg" alt="Physical Products">
+      <div class="tile-text">
+        <h2>Physical Products</h2>
+        <p>Luxury and consumer product concepts.</p>
+      </div>
+    </a>
 
-  <a class="tile" href="nonprofit.html">
-    <img src="assets/images/sectors/nonprofit.jpg" alt="Nonprofit / Impact">
-    <h2>Nonprofit / Impact</h2>
-    <p>Education, community, and giving initiatives.</p>
-  </a>
+    <a class="tile" href="nonprofit.html">
+      <img src="assets/images/sectors/nonprofit.jpg" alt="Nonprofit / Impact">
+      <div class="tile-text">
+        <h2>Nonprofit / Impact</h2>
+        <p>Education, community, and giving initiatives.</p>
+      </div>
+    </a>
 
-  <a class="tile" href="media.html">
-    <img src="assets/images/sectors/media.jpg" alt="Media & Brands">
-    <h2>Media & Brands</h2>
-    <p>Creative direction, storytelling, and culture.</p>
-  </a>
+    <a class="tile" href="media.html">
+      <img src="assets/images/sectors/media.jpg" alt="Media & Brands">
+      <div class="tile-text">
+        <h2>Media & Brands</h2>
+        <p>Creative direction, storytelling, and culture.</p>
+      </div>
+    </a>
+  </main>
 
-</main>
+  <script>
+    const PASSWORD = "rgl2025";
+    const gate = document.getElementById("passwordGate");
+    const inputEl = document.getElementById("passwordInput");
+    const errorEl = document.getElementById("errorMsg");
+    const btn = document.getElementById("passwordBtn");
 
-  </div>
+    function checkPassword() {
+      if (inputEl.value === PASSWORD) {
+        gate.remove();
+      } else {
+        errorEl.style.display = "block";
+        inputEl.value = "";
+        inputEl.focus();
+      }
+    }
+
+    btn.addEventListener("click", checkPassword);
+    inputEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") checkPassword();
+    });
+  </script>
 
 </body>
 </html>
