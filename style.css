@@ -16,7 +16,7 @@ body {
   background-image: url("assets/background.jpg");
   background-repeat: repeat;
   background-size: 420px 420px;
-  background-position: top left;
+  background-position: 0 0;
   position: relative;
 }
 
