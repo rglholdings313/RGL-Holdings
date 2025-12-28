@@ -80,9 +80,9 @@ body::before{
    HOMEPAGE TILES GRID
    ========================= */
 .tiles{
-  width: min(1200px, 92%);
+  width: min(1240px, 92%);
   margin: 0 auto;
-  padding: 14px 0 60px;
+  padding: 18px 0 60px;
 
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -93,11 +93,7 @@ body::before{
   .tiles{ grid-template-columns: 1fr; }
 }
 
-/* =========================
-   TILE (works with BOTH:
-   1) <div class="tile-text">...</div>
-   2) direct <h2> + <p>
-   ========================= */
+/* TILE CARD */
 .tile{
   text-decoration: none;
   color: inherit;
@@ -113,11 +109,8 @@ body::before{
 
   transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 
-  /* boxy tile shape */
-  aspect-ratio: 4 / 3;
-  width: 100%;
-
-  /* IMPORTANT: allow img + text to lay out cleanly */
+  /* makes it more “box” like */
+  aspect-ratio: 5 / 4;     /* <- key change vs 4/3 */
   display: flex;
   flex-direction: column;
 }
@@ -130,68 +123,41 @@ body::before{
     0 0 0 1px rgba(255,255,255,0.05) inset;
 }
 
-/* IMAGE: fills top area, no stretching */
+/* IMAGE AREA (NO STRETCH) */
 .tile > img{
   width: 100%;
-  height: 72%;            /* controls how tall the image is inside the tile */
-  object-fit: cover;
-  object-position: center 45%;
+  height: 78%;            /* more image, less bar */
+  object-fit: cover;      /* keeps proportions */
+  object-position: center;
   display: block;
 }
 
-/* TEXT BAR — supports BOTH markup styles */
-.tile-text,
-.tile > h2,
-.tile > p{
-  background: rgba(0,0,0,0.38);
-}
-
-/* If using <div class="tile-text"> */
+/* TEXT BAR (more inner space so it’s not cramped) */
 .tile-text{
-  padding: 16px 22px 18px;     /* more room so it doesn’t cut off */
+  height: 22%;
+  padding: 16px 22px 18px;  /* more room (fixes edge cutoffs) */
+  background: rgba(0,0,0,0.38);
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 
-/* If using direct <h2> <p> children */
-.tile > h2{
-  padding: 16px 22px 6px;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  margin: 0;
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.tile > p{
-  padding: 0 22px 18px;
-  margin: 0;
-  font-size: 12px;
-  opacity: 0.9;
-  line-height: 1.4;
-
-  /* keeps bar from getting too tall */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-/* If using .tile-text markup */
 .tile-text h2{
   margin: 0 0 6px 0;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 800;
 }
+
 .tile-text p{
   margin: 0;
-  font-size: 12px;
-  opacity: 0.9;
-  line-height: 1.4;
+  font-size: 12.5px;
+  opacity: 0.92;
+  line-height: 1.35;
 
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
 
 /* =========================
    TILE (clickable <a>)
